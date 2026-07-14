@@ -89,6 +89,24 @@
         position: relative;
       }
 
+      .video-shell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .video-shell iframe {
+        position: absolute;
+        inset: 0;
+        width: 112%;
+        max-width: none;
+        height: 100%;
+        transform: translateX(-6%);
+        border: 0;
+      }
+
+      
+
       .play-button {
         position: absolute;
         top: 50%;
@@ -522,20 +540,14 @@
         </div>
 
         <aside class="hero-stage">
-          <div class="video-shell local" id="portfolio-video-wrapper">
-            <video
-              id="hero-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="auto"
-              poster="porfoliopng2.png"
-              controls
-            >
-              <source src="tout2.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la vidéo HTML5.
-            </video>
+          <div class="video-shell" id="portfolio-video-wrapper">
+            <iframe
+              src="tout2.mp4"
+              title="Showreel de Philippe Zacko"
+              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
           </div>
 
           <div class="video-badges">
@@ -758,23 +770,5 @@
     </div>
   </footer>
 
-  <script>
-    window.addEventListener("load", async () => {
-      const video = document.getElementById("hero-video");
-      if (!video) return;
-
-      video.muted = true;
-      video.defaultMuted = true;
-      video.setAttribute("muted", "");
-      video.setAttribute("playsinline", "");
-
-      try {
-        await video.play();
-        console.log("Lecture automatique OK");
-      } catch (error) {
-        console.error("Autoplay bloqué ou vidéo non lisible :", error);
-      }
-    });
-  </script>
 </body>
 </html>
